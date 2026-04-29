@@ -33,6 +33,9 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# local-only setup helper (contains a path to the service account JSON)
+generate-env.js
+
 # vercel
 .vercel
 
