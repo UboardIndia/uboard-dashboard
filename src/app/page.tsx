@@ -19,9 +19,15 @@ export default async function Home() {
         <h1 className="mb-2 text-3xl font-semibold tracking-tight text-black dark:text-zinc-50">
           Uboard Dashboard
         </h1>
-        <p className="mb-8 text-zinc-600 dark:text-zinc-400">
+        <p className="mb-6 text-zinc-600 dark:text-zinc-400">
           Names from the connected Google Sheet
         </p>
+
+        {!error && names.length > 0 && (
+          <p className="mb-8 text-sm text-zinc-400 dark:text-zinc-500">
+            {names.length} {names.length === 1 ? "name" : "names"} total
+          </p>
+        )}
 
         {error ? (
           <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-900 dark:border-red-900 dark:bg-red-950 dark:text-red-100">
