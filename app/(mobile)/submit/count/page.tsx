@@ -22,7 +22,8 @@ export default function CountPage() {
     const token = localStorage.getItem('token')
     const name = localStorage.getItem('userName')
     if (!token) { router.replace('/login'); return }
-    if (name !== 'Arjun') { router.replace('/home'); return }
+    const r = localStorage.getItem('role')
+    if (name !== 'Arjun' && r !== 'admin') { router.replace('/home'); return }
 
     fetch('/api/v1/cycles/active', { headers: { Authorization: `Bearer ${token}` } })
       .then((r) => r.json())

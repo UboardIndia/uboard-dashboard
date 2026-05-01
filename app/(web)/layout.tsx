@@ -63,6 +63,29 @@ export default function WebLayout({ children }: { children: React.ReactNode }) {
               {item.label}
             </Link>
           ))}
+
+          {/* Preview mobile screens — admin only */}
+          {role === 'admin' && (
+            <div className="pt-4 mt-2 border-t border-gray-100">
+              <div className="px-3 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wide">Preview Mobile</div>
+              {[
+                { label: 'Home Screen', href: '/home' },
+                { label: 'Gopalji / Altab / Furkan', href: '/submit/readiness' },
+                { label: 'Kashif — Defects', href: '/submit/defects' },
+                { label: 'Arjun — Count', href: '/submit/count' },
+                { label: 'Arti — Returns', href: '/submit/returns' },
+                { label: 'Mera Status', href: '/checklist' },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block px-3 py-2 rounded-xl text-xs text-gray-500 hover:bg-gray-50 hover:text-blue-700 transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          )}
         </nav>
         <div className="px-4 py-4 border-t border-gray-100">
           <div className="text-sm font-medium text-gray-700">{name}</div>

@@ -19,8 +19,9 @@ export default function DefectsPage() {
   useEffect(() => {
     const token = localStorage.getItem('token')
     const name = localStorage.getItem('userName')
+    const r = localStorage.getItem('role')
     if (!token) { router.replace('/login'); return }
-    if (name !== 'Kashif') { router.replace('/home'); return }
+    if (name !== 'Kashif' && r !== 'admin') { router.replace('/home'); return }
 
     fetch('/api/v1/cycles/active', { headers: { Authorization: `Bearer ${token}` } })
       .then((r) => r.json())

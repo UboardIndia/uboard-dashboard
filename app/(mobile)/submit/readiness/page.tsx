@@ -32,7 +32,7 @@ export default function ReadinessPage() {
     setRole(r)
     setName(n)
     if (!token) { router.replace('/login'); return }
-    if (!['factory_staff'].includes(r)) { router.replace('/home'); return }
+    if (!['factory_staff', 'admin'].includes(r)) { router.replace('/home'); return }
 
     fetch('/api/v1/cycles/active', { headers: { Authorization: `Bearer ${token}` } })
       .then((r) => r.json())
