@@ -73,8 +73,23 @@ export default function HomePage() {
     <div className="min-h-screen flex flex-col pb-20">
       {/* Header */}
       <div className="bg-blue-700 text-white px-4 pt-10 pb-6">
-        <p className="text-blue-200 text-sm">Stock System</p>
-        <h1 className="text-2xl font-bold mt-1">Namaskar, {name}!</h1>
+        <div className="flex items-start justify-between">
+          <div>
+            <p className="text-blue-200 text-sm">Stock System</p>
+            <h1 className="text-2xl font-bold mt-1">Namaskar, {name}!</h1>
+          </div>
+          <button
+            onClick={async () => {
+              const token = localStorage.getItem('token')
+              await fetch('/api/v1/auth/logout', { method: 'POST', headers: { Authorization: `Bearer ${token}` } })
+              localStorage.clear()
+              router.replace('/login')
+            }}
+            className="mt-1 text-blue-200 text-xs border border-blue-400 rounded-lg px-3 py-1.5 hover:bg-blue-600 active:bg-blue-800"
+          >
+            Logout
+          </button>
+        </div>
       </div>
 
       <div className="flex-1 px-4 py-4 space-y-4">
