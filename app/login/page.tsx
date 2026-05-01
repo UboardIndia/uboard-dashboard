@@ -33,7 +33,9 @@ export default function LoginPage() {
       localStorage.setItem('userId', data.user.id)
       localStorage.setItem('userName', data.user.name)
 
-      if (data.user.role === 'factory_staff' || data.user.role === 'supervisor') {
+      if (data.user.role === 'admin') {
+        router.replace('/preview')
+      } else if (data.user.role === 'factory_staff' || data.user.role === 'supervisor') {
         router.replace('/home')
       } else {
         router.replace('/dashboard')

@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(node -e \"const c=require\\('crypto'\\);console.log\\(c.randomBytes\\(48\\).toString\\('hex'\\)\\)\")"
+      "PowerShell(node -e \"const c=require\\('crypto'\\);console.log\\(c.randomBytes\\(48\\).toString\\('hex'\\)\\)\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(node -e ' *)",
+      "Bash(node --input-type=module)",
+      "Bash(npx next *)"
     ]
   }
 }

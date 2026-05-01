@@ -1,13 +1,22 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { Suspense, useEffect, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 const EV_PRODUCTS = [
   'U-Board E1', 'U-Board E2', 'U-Board Pro', 'U-Board Lite', 'U-Board Max'
 ]
 
 export default function ReadinessPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-gray-400">Loading...</div>}>
+      <ReadinessInner />
+    </Suspense>
+  )
+}
+
+function ReadinessInner() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [role, setRole] = useState('')
   const [name, setName] = useState('')
   const [cycleId, setCycleId] = useState('')
@@ -28,7 +37,9 @@ export default function ReadinessPage() {
   useEffect(() => {
     const token = localStorage.getItem('token')
     const r = localStorage.getItem('role') ?? ''
-    const n = localStorage.getItem('userName') ?? ''
+    const storedName = localStorage.getItem('userName') ?? ''
+    const asOverride = searchParams.get('as')
+    const n = r === 'admin' && asOverride ? asOverride : storedName
     setRole(r)
     setName(n)
     if (!token) { router.replace('/login'); return }
@@ -55,7 +66,7 @@ export default function ReadinessPage() {
         }
       })
       .catch(() => {})
-  }, [router, name])
+  }, [router, name, searchParams])
 
   const isGopalji = name === 'Gopalji'
   const isAltab = name === 'Altab'
