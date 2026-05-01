@@ -1,8 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { denyToken, extractBearerToken } from '@/lib/auth'
+import { NextResponse } from 'next/server'
 
-export async function POST(req: NextRequest) {
-  const token = extractBearerToken(req.headers.get('authorization'))
-  if (token) await denyToken(token)
+export async function POST() {
   return NextResponse.json({ success: true })
 }
